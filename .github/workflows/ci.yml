@@ -41,6 +41,7 @@ jobs:
       run: mv runtimes/win-x64/native/Release/meshoptimizer.dll runtimes/win-x64/native/meshoptimizer.dll
 
     - name: Remove Header Artifact
+      shell: bash
       run: rm -rf runtimes/${{ matrix.rid }}-x64/native/src
 
     - name: Build
