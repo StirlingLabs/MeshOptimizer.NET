@@ -8,8 +8,16 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          include:
+            - os: ubuntu
+              rid: linux
+            - os: macos
+              rid: osx
+            - os: windows
+              rid: win
+    runs-on: ${{ matrix.os }}-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -19,14 +27,30 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
+    - name: Download workflow artifact
+      uses: dawidd6/action-download-artifact@v2.14.0
+      with:
+        repo: StirlingLabs/meshoptimizer
+        workflow: build.yml
+        name: meshoptimizer-${{ matrix.os }}
+        branch: shared-lib-action
+        path: runtimes/${{ matrix.rid }}-x64/native
+
+    - name: Windows Artifact Fixup
+      if: ${{ matrix.os == 'windows' }}
+      shell: cmd
+      run: move /Y runtimes/win-x64/native/Release/meshoptimizer.dll runtimes/win-x64/native/meshoptimizer.dll
+
     - name: Build
       run: dotnet build -c Release
-      
+
     - name: Test
       run: dotnet test --no-build --verbosity normal -c Release
 
     - name: Upload NuPkg Artifact
+      if: ${{ matrix.os == 'ubuntu' }}
       uses: actions/upload-artifact@v2.2.3
       with:
         name: NuPkg
         path: MeshOptimizer/bin/Release/*.nupkg
+
