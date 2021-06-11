@@ -32,9 +32,9 @@ jobs:
       with:
         repo: StirlingLabs/meshoptimizer
         workflow: build.yml
-        name: meshoptimizer-${{ matrix.os }}
         branch: shared-lib-action
         path: runtimes/${{ matrix.rid }}-x64/native
+        name: meshoptimizer-${{ matrix.rid }}
 
     - name: Windows Artifact Fixup
       if: ${{ matrix.os == 'windows' }}
@@ -53,4 +53,3 @@ jobs:
       with:
         name: NuPkg
         path: MeshOptimizer/bin/Release/*.nupkg
-
