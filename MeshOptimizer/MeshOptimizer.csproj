@@ -7,12 +7,19 @@
         <AssemblyName>MeshOptimizerNet</AssemblyName>
         <TargetFramework>net5.0</TargetFramework>
         <PackageVersion>2.0.16</PackageVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Title>MeshOptimizer.NET</Title>
+        <Authors>Stirling Labs</Authors>
+        <PackageProjectUrl>https://github.com/StirlingLabs/MeshOptimizer.NET</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/StirlingLabs/MeshOptimizer.NET.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Company>Stirling Labs</Company>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" PrivateAssets="All" />
