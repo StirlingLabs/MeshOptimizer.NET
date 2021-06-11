@@ -38,8 +38,10 @@ jobs:
 
     - name: Windows Artifact Fixup
       if: ${{ matrix.os == 'windows' }}
-      shell: cmd
-      run: move /Y runtimes/win-x64/native/Release/meshoptimizer.dll runtimes/win-x64/native/meshoptimizer.dll
+      run: mv runtimes/win-x64/native/Release/meshoptimizer.dll runtimes/win-x64/native/meshoptimizer.dll
+
+    - name: Remove Header Artifact
+      run: rm -rf runtimes/${{ matrix.rid }}-x64/native/src
 
     - name: Build
       run: dotnet build -c Release
