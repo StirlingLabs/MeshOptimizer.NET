@@ -315,7 +315,7 @@ namespace MeshOptimizer {
     [DllImport(LibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "meshopt_setAllocator", ExactSpelling = true)]
     public static extern void SetAllocator([NativeTypeName("void *(*)(size_t)")] IntPtr allocate, [NativeTypeName("void (*)(void *)")] IntPtr deallocate);
 
-    public static int quantizeUnorm(float v, int N) {
+    public static int QuantizeUnorm(float v, int N) {
       float scale = (1 << N) - 1;
 
       v = (v >= 0) ? v : 0;
@@ -323,7 +323,7 @@ namespace MeshOptimizer {
       return (int) (v * scale + 0.5f);
     }
 
-    public static int quantizeSnorm(float v, int N) {
+    public static int QuantizeSnorm(float v, int N) {
       var scale = (float) ((1 << (N - 1)) - 1);
       var round = (v >= 0 ? 0.5f : -0.5f);
 
@@ -333,7 +333,7 @@ namespace MeshOptimizer {
     }
 
     [return: NativeTypeName("unsigned short")]
-    public static ushort quantizeHalf(float v) {
+    public static ushort QuantizeHalf(float v) {
       var u = new AliasedFloat {f = v};
       var ui = u.ui;
       var s = (ui >> 16) & 0x8000u;
@@ -346,7 +346,7 @@ namespace MeshOptimizer {
       return (ushort) (s | h);
     }
 
-    public static float quantizeFloat(float v, int N) {
+    public static float QuantizeFloat(float v, int N) {
       var u = new AliasedFloat {f = v};
       var ui = u.ui;
       var mask = (1u << (23 - N)) - 1;
@@ -361,10 +361,10 @@ namespace MeshOptimizer {
     }
 
     [NativeTypeName("void *(*)(size_t)")]
-    public static void* allocate(ulong l) => (void*) Marshal.AllocHGlobal((IntPtr) l);
+    public static void* Allocate(ulong l) => (void*) Marshal.AllocHGlobal((IntPtr) l);
 
     [NativeTypeName("void (*)(void *)")]
-    public static void deallocate(void* p) => Marshal.FreeHGlobal((IntPtr) p);
+    public static void Deallocate(void* p) => Marshal.FreeHGlobal((IntPtr) p);
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     public delegate void* UnmanagedAllocatorDelegate(ulong l);
