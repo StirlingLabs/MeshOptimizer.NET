@@ -1,4 +1,4 @@
-# MeshOptimizer.NET
+# 🐇 MeshOptimizer.Net
 a .NET idiomatic wrapper around [StirlingLabs/meshoptimizer](https://github.com/StirlingLabs/meshoptimizer)
 
 ## Pipeline
