@@ -50,7 +50,7 @@ jobs:
       run: dotnet build -c Release
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal -c Release
+      run: dotnet test --no-build --verbosity normal -c Release --logger GitHubActions
 
     - name: Upload NuPkg Artifact
       if: ${{ matrix.os == 'ubuntu' }}
