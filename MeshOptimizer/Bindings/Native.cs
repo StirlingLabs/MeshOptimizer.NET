@@ -41,10 +41,10 @@ namespace MeshOptimizer {
           return NativeLibrary.Load("runtimes/win-x64/native/" + name);
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-          return NativeLibrary.Load("runtimes/osx-x64/native/" + name);
+          return NativeLibrary.Load("runtimes/osx-x64/native/lib" + name + ".dylib");
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-          return NativeLibrary.Load("runtimes/linux-x64/native/" + name);
+          return NativeLibrary.Load("runtimes/linux-x64/native/lib" + name + ".so");
 
         throw new PlatformNotSupportedException(RuntimeInformation.OSDescription + " does not appear to be supported.");
       });
