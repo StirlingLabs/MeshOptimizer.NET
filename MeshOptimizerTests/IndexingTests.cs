@@ -8,7 +8,7 @@ namespace MeshOptimizerTests {
     [Fact]
     public void ReindexTest() {
       var vertices = new Vertex[12] {
-        new Vertex(1, 0, 0),
+        new Vertex(1, 0, 11),//REMOVE TO FIX TEST
         new Vertex(0, 1, 0),
         new Vertex(0, 0, 1),
         new Vertex(0, 0, 1),
