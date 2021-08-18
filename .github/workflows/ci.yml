@@ -61,9 +61,4 @@ jobs:
 
     - name: Publish NuPkg on GitHub
       if: ${{ matrix.os == 'ubuntu' }}
-      uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
-      with:
-        nupkg-path: MeshOptimizer/bin/Release/*.nupkg
-        repo-owner: ${{ github.repository_owner }}
-        gh-user: ${{ github.actor }}
-        token: ${{ github.token }}
+      run: dotnet nuget push MeshOptimizer/bin/Release/*.nupkg -k ${{github.token}} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json -n 1 --skip-duplicate
