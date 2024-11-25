@@ -30,7 +30,7 @@ jobs:
         dotnet-version: 5.0.x
 
     - name: Download workflow artifact
-      uses: dawidd6/action-download-artifact@v2.14.0
+      uses: dawidd6/action-download-artifact@v6
       with:
         repo: StirlingLabs/meshoptimizer
         workflow: build.yml
